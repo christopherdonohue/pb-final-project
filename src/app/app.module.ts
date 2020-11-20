@@ -10,7 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroComponent } from './hero/hero.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthModule } from './auth/auth.module';
-import { BudgetComponent } from './budget/budget.component';
+//import { BudgetComponent } from './budget/budget.component';
 import { FormsModule } from '@angular/forms';
 
 
@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     HeroComponent,
     ProfileComponent,
-    BudgetComponent,
+    //BudgetComponent,
 
   ],
   imports: [

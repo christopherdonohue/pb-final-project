@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BudgetComponent } from '../budget/budget.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-      { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] }
+      { path: 'signup', component: SignupComponent, canActivate: [AuthGuard] },
+      { path: 'submit', component: BudgetComponent, canActivate: [AuthGuard] }
     ]
   }
 ];
@@ -26,7 +28,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    BudgetComponent
   ],
   imports: [
     RouterModule.forChild(routes),

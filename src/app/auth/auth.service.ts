@@ -30,6 +30,11 @@ export class AuthService {
     return this.http.post(URI, userData);
   }
 
+  public submit(budgetData: any): Observable<any> {
+    const URI = this.uriseg + '/submit';
+    return this.http.post(URI, budgetData);
+  }
+
   public login(userData: any): Observable<any> {
     const URI = this.uriseg + '/login';
     return this.http.post(URI, userData).pipe(map(token => {

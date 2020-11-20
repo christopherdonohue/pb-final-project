@@ -19,10 +19,10 @@
         </div>
         <div *ngIf="isValidInput('email')"
           class="alert alert-danger">
-          <div *ngIf="loginForm.controls['email'].errors.required">
+          <div *ngIf="loginForm.controls['email']?.errors?.required">
             Email is required.
           </div>
-          <div *ngIf="loginForm.controls['email'].errors.pattern">
+          <div *ngIf="loginForm.controls['email']?.errors?.pattern">
             Must be a valid email format.
           </div>
         </div>
@@ -35,7 +35,7 @@
         </div>
         <div *ngIf="isValidInput('password')"
           class="alert alert-danger">
-          <div *ngIf="loginForm.controls['password'].errors.required">
+          <div *ngIf="loginForm.controls['password']?.errors?.required">
             Password is required.
           </div>
         </div>

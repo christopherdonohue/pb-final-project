@@ -5,7 +5,7 @@ const cors = require('cors');
 
 const config = require('./DB');
 const userRoute = require('./routes/UserRoute');
-
+const budgetRoute = require('./routes/BudgetRoute')
 const PORT = process.env.PORT || 5000;
 
 mongoose.set('useNewUrlParser', true);
@@ -15,13 +15,13 @@ mongoose.set('useCreateIndex', true);
 
 mongoose.connect(config.DB).then(
   () => { console.log('Database is connected') },
-  err => { console.log('Cannot connect to the database' + err) }
+  err => { console.log('Can not connect to the database' + err) }
 );
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 
 let corsOptions = {
   origin: 'http://localhost:4200',
@@ -30,6 +30,7 @@ let corsOptions = {
 
 app.use(cors(corsOptions))
 app.use('/api/users', userRoute);
+app.use('/api/users', budgetRoute)
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

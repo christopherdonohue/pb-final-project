@@ -52,5 +52,5 @@ export class LoginComponent implements OnInit {
         (errorResponse) => {
           this.errors.push(errorResponse.error.error);
         });
-  }
+      }
 }

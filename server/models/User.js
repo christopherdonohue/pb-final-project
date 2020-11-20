@@ -3,17 +3,16 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema
 
-const newLocal = this.notify;
 const userSchema = new Schema({
   username: {
     type: String,
-    minlength: 4,
-    maxlength: 32
+    min: [4, 'Too short, min 4 characters are required'],
+    max: [32, 'Too long, max 16 characters are required']
   },
   email: {
     type: String,
-    minlength: 4,
-    maxlength: 32,
+    min: [4, 'Too short, min 4 characters are required'],
+    max: [32, 'Too long, max 16 characters are required'],
     lowercase: true,
     unique: true,
     required: 'Email is required',
@@ -21,14 +20,14 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    minlength: 4,
-    maxlength: 32,
+    min: [4, 'Too short, min 4 characters are required'],
+    max: [32, 'Too long, max 16 characters are required'],
     required: 'password is required'
   },
   passwordConfirmation: {
     type: String,
-    minlength: 4,
-    maxlength: 32
+    min: [4, 'Too short, min 4 characters are required'],
+    max: [32, 'Too long, max 16 characters are required']
   }
 });
 
