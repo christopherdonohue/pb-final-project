@@ -29,3 +29,11 @@ exports.addBudget = function (req, res) {
     }
   })
  }
+
+ exports.getBudget = function (req, res) {
+   Budget.find({}).then((data) => {
+    res.json({data});
+   });
+
+  }
+

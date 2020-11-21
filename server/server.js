@@ -32,6 +32,8 @@ app.use(cors(corsOptions))
 app.use('/api/users', userRoute);
 app.use('/api/users', budgetRoute)
 
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
 });
