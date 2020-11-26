@@ -46,8 +46,9 @@
         <div class="form-group">
           <label for="color">Color</label>
           <input
+            placeholder="#ABCDEF"
             required
-            pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+            pattern="^#([A-Fa-f0-9]{6})$"
             ngModel
             name="color"
             #color="ngModel"
@@ -58,7 +59,7 @@
           />
           <div class="alert alert-danger" *ngIf="color.touched && !color.valid">
             <div *ngIf="color?.errors?.pattern">
-              Color Must be 3 or 6 Digit Hexadecimal
+              Color Must be 6 Digit Hex
             </div>
             <div *ngIf="color?.errors?.required">Color is Required</div>
           </div>

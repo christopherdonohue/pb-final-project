@@ -9,7 +9,10 @@ router.post('/signup', user.signup)
 router.post('/login', user.login)
 
 router.get('/profile', authMiddleware, function (req, res) {
+  console.log(req.user.id)
   res.json({ 'access': true })
 })
+
+
 
 module.exports = router

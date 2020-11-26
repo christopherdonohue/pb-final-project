@@ -1,6 +1,15 @@
 const mongoose = require("mongoose")
+const { authMiddleware } = require("../controllers/UserController")
+
+
+
 
 const budgetSchema = new mongoose.Schema({
+
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
     title: {
         type: String,
         trim: true,
@@ -14,6 +23,7 @@ const budgetSchema = new mongoose.Schema({
     color: {
         type: String,
         required: true,
+
 
     }
 

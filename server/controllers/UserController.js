@@ -102,6 +102,13 @@ exports.signup = function (req, res) {
     }
   }
 
+
   function parseToken(token) {
     return jwt.verify(token.split(' ')[1], env.secret)
   }
+
+
+
+
+
+

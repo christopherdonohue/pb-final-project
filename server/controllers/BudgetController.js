@@ -1,8 +1,15 @@
 const Budget = require('../models/Budget')
 
+const userCont = require('../controllers/UserController')
+const mongoose = require('mongoose')
+
+
+
 exports.addBudget = function (req, res) {
-  const { title, budgetVal, color } = req.body
-  if (!title && !budgetVal && !color ) {
+  var {  title, budgetVal, color } = req.body
+  color += "7f"
+  if ( !title && !budgetVal && !color ) {
+
     return res.status(422).json({ 'error': 'Please provide title, budget, and color' })
   }
 
@@ -15,12 +22,13 @@ exports.addBudget = function (req, res) {
     }
     else {
       const budget = new Budget({
-        title, budgetVal, color
+          title, budgetVal, color
       })
 
       budget.save(function (err) {
         if (err) {
           return res.status(422).json({
+
             'error': 'Oops! Something Went Wrong.'
           })
         }
@@ -34,6 +42,8 @@ exports.addBudget = function (req, res) {
    Budget.find({}).then((data) => {
     res.json({data});
    });
+
+
 
   }
 

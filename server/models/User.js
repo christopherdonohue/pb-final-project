@@ -3,6 +3,9 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema
 
+
+
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -28,8 +31,11 @@ const userSchema = new Schema({
     type: String,
     min: [4, 'Too short, min 4 characters are required'],
     max: [32, 'Too long, max 16 characters are required']
-  }
+  },
+
 });
+
+
 
 userSchema.pre('save', function (next) {
   const user = this
@@ -56,3 +62,4 @@ userSchema.methods.hasSamePassword = function (password) {
 }
 
 module.exports = mongoose.model('User', userSchema)
+

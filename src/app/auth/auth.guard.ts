@@ -22,11 +22,11 @@ export class AuthGuard implements CanActivate {
     if (this.isLoginOrRegister()) {
       return true;
     }
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/login']);
     return false;
   }
   private isLoginOrRegister(): boolean {
-    if (this.url.includes('/auth/login') || this.url.includes('/auth/signup')) {
+    if (this.url.includes('/login') || this.url.includes('/signup')) {
       return true;
     }
     return false;
