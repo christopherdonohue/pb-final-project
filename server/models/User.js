@@ -5,6 +5,22 @@ const Schema = mongoose.Schema
 
 
 
+const budgetSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  budgetVal: {
+    type: Number,
+    required: true,
+  },
+  color: {
+    type: String,
+    required: true
+  }
+})
+
+
 
 const userSchema = new Schema({
   username: {
@@ -32,6 +48,7 @@ const userSchema = new Schema({
     min: [4, 'Too short, min 4 characters are required'],
     max: [32, 'Too long, max 16 characters are required']
   },
+  budgets: [budgetSchema]
 
 });
 

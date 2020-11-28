@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import * as moment from 'moment';
+
 
 const jwt = new JwtHelperService();
 
@@ -32,16 +33,24 @@ export class AuthService {
 
   public submit(budgetData: any): Observable<any> {
     const URI = this.uriseg + '/submit';
-    return this.http.post(URI, budgetData);
+    return this.http.put(URI, budgetData);
   }
 
   public login(userData: any): Observable<any> {
     const URI = this.uriseg + '/login';
     return this.http.post(URI, userData).pipe(map(token => {
+      this.getProfile(token).subscribe((res: any) => {
+        console.log(res)
+      })
       return this.saveToken(token);
     }));
   }
 
+  private getProfile(token: any): any{
+    const URI = this.uriseg + '/profile';
+    return this.http.get(URI, { headers: new HttpHeaders({Authorization: 'Bearer ' + token})
+  });
+  }
 
   private saveToken(token: any): any {
     this.decodedToken = jwt.decodeToken(token);

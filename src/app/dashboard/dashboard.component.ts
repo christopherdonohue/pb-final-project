@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MethodCall } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -41,8 +41,6 @@ export class DashboardComponent implements OnInit {
         this.notify = 'Budget Successfully Added!';
       }
     });
-
-
 
     this.http.get('http://localhost:5000/api/users/budget')
     .subscribe((res: any) => {
