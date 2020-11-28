@@ -39,9 +39,7 @@ export class AuthService {
   public login(userData: any): Observable<any> {
     const URI = this.uriseg + '/login';
     return this.http.post(URI, userData).pipe(map(token => {
-      this.getProfile(token).subscribe((res: any) => {
-        console.log(res)
-      })
+      this.getProfile(token).subscribe((res: any) => {})
       return this.saveToken(token);
     }));
   }
