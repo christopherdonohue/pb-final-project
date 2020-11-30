@@ -12,7 +12,7 @@ router.get('/profile', authMiddleware, function (req, res) {
   res.json({ 'access': true })
 })
 
-
+router.put('/addAmtSpent', user.budgetUsed)
 router.put('/submit', user.addBudget)
 router.get('/budget', user.getBudget)
 

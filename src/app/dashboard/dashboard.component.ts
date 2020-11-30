@@ -15,6 +15,8 @@ import { AuthService } from '../auth/auth.service';
 export class DashboardComponent implements OnInit {
 
   notify!: string;
+  formData: any = {};
+  errors: any = [];
 
    data = [] as any;
 
@@ -28,17 +30,17 @@ export class DashboardComponent implements OnInit {
   labels: [] as any
   };
 
-
-
-
-
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const key1 = 'added';
+      const key2 = 'updated';
       if (params[key1] === 'success') {
         this.notify = 'Budget Successfully Added!';
+      }
+      else if (params[key2] === 'success') {
+        this.notify = 'Budget Successfully Updated!';
       }
     });
 
@@ -81,6 +83,17 @@ export class DashboardComponent implements OnInit {
         type: 'polarArea',
         data: this.dataSource
     });
+  }
+
+  addAmtSpent(): void {
+    this.errors = [];
+    this.auth.addAmtSpent(this.formData)
+      .subscribe(() => {
+        this.router.navigate(['/dashboard'], { queryParams: { updated: 'success' } });
+       },
+        (errorResponse: { error: { error: any; }; }) => {
+          this.errors.push(errorResponse.error.error);
+        });
   }
 
 

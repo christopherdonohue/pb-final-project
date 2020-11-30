@@ -17,6 +17,10 @@ const budgetSchema = new Schema({
   color: {
     type: String,
     required: true
+  },
+  amtSpent: {
+    type: Number
+
   }
 })
 
@@ -56,6 +60,8 @@ const userSchema = new Schema({
 
 userSchema.pre('save', function (next) {
   const user = this
+  // if user already exits - don't re-hash password
+  if (!user.isModified('password')) return next();
   bcrypt.genSalt(10, function (err, salt) {
     if (err) {
       return res.status(422).json({

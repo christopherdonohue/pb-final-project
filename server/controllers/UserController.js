@@ -4,6 +4,7 @@ const env = require("../DB");
 const jwt = require("jsonwebtoken");
 
 var UID = null;
+var amtSpent = null;
 // User signup
 exports.signup = function (req, res) {
   const { username, email, password, passwordConfirmation } = req.body;
@@ -16,12 +17,10 @@ exports.signup = function (req, res) {
   }
   User.findOne({ email }, function (err, existingUser) {
     if (err) {
-      return res
-        .status(422)
-        .json({
-          error:
-            "Error! Minimum of 4 and Maximum of 32 Characters Required in all Fields!",
-        });
+      return res.status(422).json({
+        error:
+          "Error! Minimum of 4 and Maximum of 32 Characters Required in all Fields!",
+      });
     }
     if (existingUser) {
       return res.status(422).json({ error: "User already exists" });
@@ -109,49 +108,63 @@ exports.authMiddleware = function (req, res, next) {
   }
 };
 
+function parseToken(token) {
+  return jwt.verify(token.split(" ")[1], env.secret);
+}
 
-  function parseToken(token) {
-    return jwt.verify(token.split(' ')[1], env.secret)
+exports.addBudget = function (req, res) {
+  var { title, budgetVal, color } = req.body;
+  amtSpent = 0;
+  color += "7f";
+  if (!title && !budgetVal && !color) {
+    return res
+      .status(422)
+      .json({ error: "Please provide title, budget, and color" });
   }
 
-  exports.addBudget = function (req, res) {
-    var { title, budgetVal, color } = req.body;
-    color += "7f";
-    if (!title && !budgetVal && !color) {
-      return res
-        .status(422)
-        .json({ error: "Please provide title, budget, and color" });
-    }
-
-    const user1 = UID;
-    User.findByIdAndUpdate(
-      user1,
-      { $push: { budgets: { title, budgetVal, color } } },
-      { safe: true, new: true },
-      function (err, user) {
-        if (err) {
-          console.log(err);
-        } else {
-          return res.status(200).json({ added: true });
-        }
-      }
-    );
-  };
-
-  exports.getBudget = function (req, res) {
-    User.findById(UID, function (err, user) {
+  const user1 = UID;
+  User.findByIdAndUpdate(
+    user1,
+    { $push: { budgets: { title, budgetVal, color, amtSpent } } },
+    { safe: true, new: true },
+    function (err, user) {
       if (err) {
         console.log(err);
       } else {
-        data = user.budgets;
-        res.json({ data });
+        return res.status(200).json({ added: true });
       }
-    });
-  };
+    }
+  );
+};
 
+exports.budgetUsed = function (req, res) {
+  var { title, amtSpent } = req.body;
+  if (!title || !amtSpent) {
+    res.status(422).json({ error: "Please Provide Title or The Amount Spent" });
+  }
 
+  User.findById(UID, function (err, user) {
+    for (i = 0; i < user.budgets.length; i++) {
+      if (user.budgets[i].title === title) {
+        user.budgets[i].amtSpent += amtSpent;
+        newAmt = user.budgets[i].amtSpent;
+        console.log(user.budgets);
+        user.save();
+        return res.status(200).json({ updated: true });
+      } else {
+        console.log(err);
+      }
+    }
+  });
+};
 
-
-
-
-
+exports.getBudget = function (req, res) {
+  User.findById(UID, function (err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      data = user.budgets;
+      res.json({ data });
+    }
+  });
+};

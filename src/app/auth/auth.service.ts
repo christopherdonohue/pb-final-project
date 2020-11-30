@@ -36,6 +36,11 @@ export class AuthService {
     return this.http.put(URI, budgetData);
   }
 
+  public addAmtSpent(amtSpent: any): Observable<any> {
+    const URI = this.uriseg + '/addAmtSpent';
+    return this.http.put(URI, amtSpent);
+  }
+
   public login(userData: any): Observable<any> {
     const URI = this.uriseg + '/login';
     return this.http.post(URI, userData).pipe(map(token => {
