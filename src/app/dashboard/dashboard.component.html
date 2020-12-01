@@ -4,7 +4,7 @@
 
 <p class="container">dashboard!</p>
 <h1>Chart</h1>
-  <div class="myChart"><canvas id ="myPieChart" width="400" height="400"></canvas></div>
+  <div class="myChart"><canvas id ="myDoughnutChart" width="400" height="400"></canvas></div>
   <div class="myChart"><canvas id ="myBarChart" width="400" height="400"></canvas></div>
   <div class="myChart"><canvas id ="myPolarAreaChart" width="400" height="400"></canvas></div>
 
@@ -36,7 +36,7 @@
             name="amtSpent"
             #amtSpent="ngModel"
             id="amtSpent"
-            type="text"
+            type="number"
             [(ngModel)]="formData.amtSpent"
             class="form-control"
           />

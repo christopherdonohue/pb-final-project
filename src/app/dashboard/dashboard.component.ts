@@ -25,6 +25,12 @@ export class DashboardComponent implements OnInit {
       {
         data: [] as any,
         backgroundColor: [] as any,
+
+      },
+      {
+        data:[] as any,
+        backgroundColor : "#0000007f",
+        label: 'Amount Spent This Month'
       }
   ],
   labels: [] as any
@@ -50,8 +56,9 @@ export class DashboardComponent implements OnInit {
         this.dataSource.datasets[0].data[i] = res.data[i].budgetVal;
         this.dataSource.datasets[0].backgroundColor[i] = res.data[i].color;
         this.dataSource.labels[i] = res.data[i].title;
+        this.dataSource.datasets[1].data[i] = res.data[i].amtSpent;
     }
-      this.createPieChart();
+      this.createDoughnutChart();
       this.createBarChart();
       this.createPolarAreaChart();
       });
@@ -60,11 +67,11 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  createPieChart() {
-    const canvas = document.getElementById('myPieChart') as HTMLCanvasElement;
+  createDoughnutChart() {
+    const canvas = document.getElementById('myDoughnutChart') as HTMLCanvasElement;
     const ctx: any = canvas.getContext('2d');
     const myPieChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'doughnut',
         data: this.dataSource,
     });
   }
@@ -73,7 +80,17 @@ export class DashboardComponent implements OnInit {
     const ctx: any = canvas.getContext('2d');
     const myBarChart = new Chart(ctx, {
         type: 'bar',
-        data: this.dataSource
+        data: this.dataSource,
+        // options: {
+        //   scales: {
+        //       xAxes: [{
+        //           stacked: true
+        //       }],
+        //       yAxes: [{
+        //           stacked: true
+        //       }]
+        //     }
+        //   }
     });
   }
   createPolarAreaChart() {

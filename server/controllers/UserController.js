@@ -1,10 +1,10 @@
 const User = require("../models/User");
-const Budget = require("../models/User");
 const env = require("../DB");
 const jwt = require("jsonwebtoken");
 
 var UID = null;
-var amtSpent = null;
+var budgID = null;
+//var amtSpent = null;
 // User signup
 exports.signup = function (req, res) {
   const { username, email, password, passwordConfirmation } = req.body;
@@ -114,7 +114,6 @@ function parseToken(token) {
 
 exports.addBudget = function (req, res) {
   var { title, budgetVal, color } = req.body;
-  amtSpent = 0;
   color += "7f";
   if (!title && !budgetVal && !color) {
     return res
@@ -123,6 +122,7 @@ exports.addBudget = function (req, res) {
   }
 
   const user1 = UID;
+  var amtSpent = 0;
   User.findByIdAndUpdate(
     user1,
     { $push: { budgets: { title, budgetVal, color, amtSpent } } },
@@ -139,6 +139,7 @@ exports.addBudget = function (req, res) {
 
 exports.budgetUsed = function (req, res) {
   var { title, amtSpent } = req.body;
+  var newAmt = amtSpent
   if (!title || !amtSpent) {
     res.status(422).json({ error: "Please Provide Title or The Amount Spent" });
   }
@@ -146,8 +147,9 @@ exports.budgetUsed = function (req, res) {
   User.findById(UID, function (err, user) {
     for (i = 0; i < user.budgets.length; i++) {
       if (user.budgets[i].title === title) {
+        console.log(UID)
+        console.log(budgID)
         user.budgets[i].amtSpent += amtSpent;
-        newAmt = user.budgets[i].amtSpent;
         console.log(user.budgets);
         user.save();
         return res.status(200).json({ updated: true });
@@ -163,6 +165,7 @@ exports.getBudget = function (req, res) {
     if (err) {
       console.log(err);
     } else {
+     // console.log(user.budgets)
       data = user.budgets;
       res.json({ data });
     }
