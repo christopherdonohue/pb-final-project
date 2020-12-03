@@ -139,7 +139,6 @@ exports.addBudget = function (req, res) {
 
 exports.budgetUsed = function (req, res) {
   var { title, amtSpent } = req.body;
-  var newAmt = amtSpent
   if (!title || !amtSpent) {
     res.status(422).json({ error: "Please Provide Title or The Amount Spent" });
   }
@@ -152,7 +151,11 @@ exports.budgetUsed = function (req, res) {
         user.budgets[i].amtSpent += amtSpent;
         console.log(user.budgets);
         user.save();
-        return res.status(200).json({ updated: true });
+        if (user.budgets[i].amtSpent > user.budgets[i].budgetVal) {
+          return res.status(200).json({ updated: true, overBudget: true });
+        } else {
+          return res.status(200).json({ updated: true, overBudget: false });
+        }
       } else {
         console.log(err);
       }

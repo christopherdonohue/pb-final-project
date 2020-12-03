@@ -1,2 +1,6 @@
-<h1>Welcome Back {{ auth.getUsername() }}!</h1>
+<div *ngIf="notify" class="alert alert-danger container marge">
+  {{ notify }}
+</div>
+
+<h1>Welcome Back, {{ auth.getUsername() }}!</h1>
 <h2>Here Are Your Budgets:</h2>
