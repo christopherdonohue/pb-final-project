@@ -1,3 +1,4 @@
+import { KeyValue } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,37 +7,50 @@ import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
-
-  data = [] as any;
   notify!: string;
 
   public dataSource = {
     datasets: [
       {
-        data: [] as any,
-        data2: [] as any,
-        backgroundColor: [] as any,
-
+        Title: [] as any,
+        Budget: [] as any,
+        Amount_Spent: [] as any,
       },
-  ],
-  labels: [] as any
+    ],
   };
 
-
-
-  constructor(public auth: AuthService, private router: Router, private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      const key1 = 'overBudget';
-      if (params[key1] === 'true') {
-        this.notify = 'You Are Over Budget!';
-      }
-    });
+    this.http
+      .get('http://localhost:5000/api/users/budget')
+      .subscribe((res: any) => {
+        for (let i = 0; i < res.data.length; i++) {
+          this.dataSource.datasets[0].Budget[i] = res.data[i].budgetVal;
+          this.dataSource.datasets[0].Title[i] = res.data[i].title;
+          this.dataSource.datasets[0].Amount_Spent[i] = res.data[i].amtSpent;
+        }
+      });
   }
+
+  /*
+This comparer function prevents the default keyvalue pipe from sorting Alphabetically.
+It now keeps the original order I have declared above (Title, Budget, Amount_Spent)
+*/
+  originalOrder = (
+    a: KeyValue<string, string>,
+    b: KeyValue<string, string>
+  ): number => {
+    return 0;
+  };
 }
 
 
