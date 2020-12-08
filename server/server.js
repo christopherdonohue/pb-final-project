@@ -24,12 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 let corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: 'https://safe-woodland-35734.herokuapp.com/',
   optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions))
-app.use('/api/users', userRoute);
+app.use('api/users', userRoute);
 // app.use('/api/users', budgetRoute)
 
 
