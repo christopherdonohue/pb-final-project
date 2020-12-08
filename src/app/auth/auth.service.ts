@@ -18,7 +18,7 @@ class DecodedToken {
 })
 export class AuthService {
 
-  private uriseg = 'https://safe-woodland-35734.herokuapp.com/api/users';
+  private uriseg = 'api/users';
   private decodedToken;
 
   constructor(private http: HttpClient) {
