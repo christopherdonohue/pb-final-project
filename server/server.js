@@ -14,11 +14,6 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 
-app.use(static(__dirname + '/dist'));
-
-app.all('*', (req, res) => {
-  res.status(200).sendFile(__dirname + '/dist/index.html');
-});
 
 mongoose.connect(config.DB).then(
   () => { console.log('Database is connected') },
@@ -26,6 +21,13 @@ mongoose.connect(config.DB).then(
 );
 
 const app = express();
+
+
+app.use(static(__dirname + '/dist'));
+
+app.all('*', (req, res) => {
+  res.status(200).sendFile(__dirname + '/dist/index.html');
+});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
