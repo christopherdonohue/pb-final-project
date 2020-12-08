@@ -29,7 +29,7 @@ let corsOptions = {
 }
 
 app.use(cors(corsOptions))
-app.use('api/users', userRoute);
+app.use('/api/users', userRoute);
 // app.use('/api/users', budgetRoute)
 
 
