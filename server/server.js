@@ -13,8 +13,12 @@ mongoose.set('useUnifiedTopology', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
-var distDir = __dirname + "/dist/";
- app.use(express.static(distDir))
+
+app.use(static(__dirname + '/dist'));
+
+app.all('*', (req, res) => {
+  res.status(200).sendFile(__dirname + '/dist/index.html');
+});
 
 mongoose.connect(config.DB).then(
   () => { console.log('Database is connected') },
