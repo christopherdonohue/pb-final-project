@@ -6,7 +6,7 @@ const cors = require('cors');
 const config = require('./DB');
 const userRoute = require('./routes/UserRoute');
 const budgetRoute = require('./routes/BudgetRoute')
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 let corsOptions = {
   origin: 'http://localhost:4200',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions))
