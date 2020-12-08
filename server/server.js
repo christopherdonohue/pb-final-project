@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 let corsOptions = {
-  origin: 'https://safe-woodland-35734.herokuapp.com',
+  origin: 'https://safe-woodland-35734.herokuapp.com/',
   optionsSuccessStatus: 200
 }
 
