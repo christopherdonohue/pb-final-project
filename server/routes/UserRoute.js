@@ -12,6 +12,10 @@ router.get('/', function (req, res) {
   res.json({ 'access': true })
 })
 
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/pb-final/index.html"));
+});
+
 router.get('/profile', authMiddleware, function (req, res) {
   res.json({ 'access': true })
 })
