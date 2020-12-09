@@ -6,7 +6,7 @@ const cors = require('cors');
 const config = require('./DB');
 const userRoute = require('./routes/UserRoute');
 const budgetRoute = require('./routes/BudgetRoute')
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useUnifiedTopology', true);
