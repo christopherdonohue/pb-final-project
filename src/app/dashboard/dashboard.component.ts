@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit {
     });
 
     this.http
-      .get('http://localhost:8080/api/users/budget')
+      .get('api/users/budget')
       .subscribe((res: any) => {
         for (let i = 0; i < res.data.length; i++) {
           this.dataSource.datasets[0].data[i] = res.data[i].budgetVal;
