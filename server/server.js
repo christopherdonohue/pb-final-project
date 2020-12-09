@@ -43,7 +43,7 @@ let corsOptions = {
 }
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/dist/pb-final/index.html"));
+  res.sendFile("/dist/pb-final/index.html");
 });
 
 app.use(cors(corsOptions))
