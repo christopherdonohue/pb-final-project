@@ -17,7 +17,7 @@ mongoose.set('useCreateIndex', true);
 
 mongoose.connect(config.DB).then(
   () => { console.log('Database is connected') },
-  err => { console.log('Can not connect to the database' + err) }
+  err => { console.log('Cannot connect to the database' + err) }
 );
 
 const app = express();
@@ -25,6 +25,7 @@ const path = require('path');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use(cors())
 app.use('/api/users', userRoute);
 
@@ -36,17 +37,9 @@ app.use(express.static( './pb-final'));
 //   res.sendFile(path.join(__dirname + '/dist/pb-final/index.html'));
 // });
 
-
-
-
-
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "./pb-final/index.html"));
 });
-
-
-
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
