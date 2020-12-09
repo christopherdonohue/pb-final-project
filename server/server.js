@@ -43,11 +43,11 @@ let corsOptions = {
 }
 
 app.get('/', (request, response) => {
-  response.send('Hello');
+  app.use('/api/users', userRoute);
 });
 
 app.use(cors(corsOptions))
-app.use('/api/users', userRoute);
+//app.use('/api/users', userRoute);
 // app.use('/api/users', budgetRoute)
 
 
