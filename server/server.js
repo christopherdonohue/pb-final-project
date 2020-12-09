@@ -38,13 +38,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 let corsOptions = {
-  origin: 'https://pb-final-project-3nwtj.ondigitalocean.app/',
+  origin: 'http://localhost:4200',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-// app.get("/", (req, res) => {
-//   res.sendFile("/dist/pb-final/index.html");
-// });
+app.get("/", (req, res) => {
+  res.sendFile("index.html");
+});
 
 app.use(cors(corsOptions))
 app.use('/api/users', userRoute);
