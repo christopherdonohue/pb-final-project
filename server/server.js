@@ -29,13 +29,9 @@ app.use(bodyParser.json());
 app.use(cors())
 app.use('/api/users', userRoute);
 
-// Serve static files....
+
 app.use(express.static( './pb-final'));
 
-// // Send all requests to index.html
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname + '/dist/pb-final/index.html'));
-// });
 
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "./pb-final/index.html"));
