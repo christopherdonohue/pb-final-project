@@ -8,6 +8,10 @@ router.post('/signup', user.signup)
 
 router.post('/login', user.login)
 
+router.get('/index', function (req, res) {
+  res.json({ 'access': true })
+})
+
 router.get('/profile', authMiddleware, function (req, res) {
   res.json({ 'access': true })
 })

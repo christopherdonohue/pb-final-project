@@ -42,9 +42,6 @@ let corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
-app.get("/", (req, res) => {
-  res.sendFile("index.html");
-});
 
 app.use(cors(corsOptions))
 app.use('/api/users', userRoute);
