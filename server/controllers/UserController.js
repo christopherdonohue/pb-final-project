@@ -98,7 +98,7 @@ exports.authMiddleware = function (req, res, next) {
         }
       });
     } else {
-      return res.status(422).json({ error: "Not authorized user" });
+      return res.status(422).json({ error: "Not authorized user!" });
     }
   } catch (err) {
     res.status(403).json({
