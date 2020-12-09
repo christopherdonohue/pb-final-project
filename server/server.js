@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 let corsOptions = {
-  origin: 'http://localhost:4200',
+  origin: 'https://pb-final-project-3nwtj.ondigitalocean.app/',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 

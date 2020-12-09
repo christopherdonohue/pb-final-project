@@ -8,7 +8,7 @@ router.post('/signup', user.signup)
 
 router.post('/login', user.login)
 
-router.get('/', function (req, res) {
+router.get('/index', function (req, res) {
   res.json({ 'access': true })
 })
 
