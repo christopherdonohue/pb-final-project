@@ -38,7 +38,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-
+app.get('/', function (req, res)  {
+  res.send("WHY DOES NOTHING WORK")
+})
 
 app.use(cors())
 app.use('/api/users', userRoute);
