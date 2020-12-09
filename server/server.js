@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../src/app/app.component.html"));
+  res.sendFile(path.join(__dirname, "../dist/pb-final/index.html"));
 });
 
 app.use(cors())
