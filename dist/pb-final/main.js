@@ -323,7 +323,7 @@ class DashboardComponent {
             }
         });
         this.http
-            .get('http://localhost:5000/api/users/budget')
+            .get('http://localhost:8080/api/users/budget')
             .subscribe((res) => {
             for (let i = 0; i < res.data.length; i++) {
                 this.dataSource.datasets[0].data[i] = res.data[i].budgetVal;
@@ -1102,7 +1102,7 @@ class ProfileComponent {
     }
     ngOnInit() {
         this.http
-            .get('http://localhost:5000/api/users/budget')
+            .get('http://localhost:8080/api/users/budget')
             .subscribe((res) => {
             for (let i = 0; i < res.data.length; i++) {
                 this.dataSource.datasets[0].Budget[i] = res.data[i].budgetVal;
@@ -1885,7 +1885,7 @@ class DecodedToken {
 class AuthService {
     constructor(http) {
         this.http = http;
-        this.uriseg = 'api/users';
+        this.uriseg = 'http://localhost:8080/api/users';
         // tslint:disable-next-line: no-non-null-assertion
         this.decodedToken = JSON.parse(localStorage.getItem('auth_meta')) || new DecodedToken();
     }
