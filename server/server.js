@@ -29,13 +29,9 @@ app.use(bodyParser.json());
 app.use(cors())
 app.use('/api/users', userRoute);
 
-
-app.use(express.static( './pb-final'));
-
-
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./pb-final/index.html"));
-});
+app.get('/hello', function (res, req) {
+  res.send('hello world')
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);
