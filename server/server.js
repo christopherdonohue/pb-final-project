@@ -25,7 +25,7 @@ const path = require('path');
 
 
 // Serve static files....
-//app.use(express.static(__dirname, './pb-final'));
+app.use(express.static( './pb-final'));
 
 // // Send all requests to index.html
 // app.get('/*', function(req, res) {
@@ -38,9 +38,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./pb-final/index.html"));
-// });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./pb-final/index.html"));
+});
 
 app.use(cors())
 app.use('/api/users', userRoute);
