@@ -24,13 +24,13 @@ const app = express();
 const path = require('path');
 
 
-// Serve static files....
-app.use(express.static(__dirname + '/dist/pb-final'));
+// // Serve static files....
+// app.use(express.static(__dirname + '/dist/pb-final'));
 
-// Send all requests to index.html
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/pb-final/index.html'));
-});
+// // Send all requests to index.html
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname + '/dist/pb-final/index.html'));
+// });
 
 
 
