@@ -23,6 +23,10 @@ mongoose.connect(config.DB).then(
 const app = express();
 const path = require('path');
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors())
+app.use('/api/users', userRoute);
 
 // Serve static files....
 app.use(express.static( './pb-final'));
@@ -34,16 +38,12 @@ app.use(express.static( './pb-final'));
 
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "./pb-final/index.html"));
 });
 
-app.use(cors())
-app.use('/api/users', userRoute);
 
 
 
