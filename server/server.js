@@ -38,9 +38,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-app.get('/', function (req, res)  {
-  res.send("WHY DOES NOTHING WORK")
-})
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist/pb-final/index.html"));
+});
 
 app.use(cors())
 app.use('/api/users', userRoute);
