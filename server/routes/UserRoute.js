@@ -8,12 +8,14 @@ router.post('/signup', user.signup)
 
 router.post('/login', user.login)
 
-router.get('/', function (req, res) {
-  res.json({ 'access': true })
-})
+// router.get('/', function (req, res) {
+//   res.json({ 'access': true })
+// })
+
+router.use(express.static(__dirname + "../../dist/pb-final"));
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist/pb-final/index.html"));
+  res.sendFile(path.join(__dirname + "../../dist/pb-final/index.html"));
 });
 
 router.get('/profile', authMiddleware, function (req, res) {
