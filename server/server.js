@@ -42,6 +42,10 @@ let corsOptions = {
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 
+app.get('/', (request, response) => {
+  response.send('Hello');
+});
+
 app.use(cors(corsOptions))
 app.use('/api/users', userRoute);
 // app.use('/api/users', budgetRoute)
