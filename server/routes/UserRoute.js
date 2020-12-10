@@ -8,8 +8,6 @@ router.post('/signup', user.signup)
 
 router.post('/login', user.login)
 
-// router.use(express.static(__dirname + "../../dist/pb-final"));
-
 router.get('/profile', authMiddleware, function (req, res) {
   res.json({ 'access': true })
 })
