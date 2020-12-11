@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
         this.notify = 'Budget Successfully Updated!';
       }
       if (params[key3] === 'true') {
-        this.notify2 = 'You Are Over Budget!!!';
+        this.notify2 = 'You Are Over Budget!!!!';
       }
     });
 
