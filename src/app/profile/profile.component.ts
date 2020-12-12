@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get('http://localhost:8080/api/users/budget')
+      .get('http://157.230.233.155:8080/api/users/budget')
       .subscribe((res: any) => {
         for (let i = 0; i < res.data.length; i++) {
           this.dataSource.datasets[0].Budget[i] = res.data[i].budgetVal;
